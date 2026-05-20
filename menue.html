@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>施術メニュー｜還日堂 KANJITSUDŌ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050403;
+      --bg-soft: #070504;
+      --white: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.14);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 42%),
+        #020201;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 66px;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 42%),
+        #020201;
+      color: #fff;
+      font-family: "Cormorant Garamond", "Noto Serif JP", "Yu Mincho", serif;
+      overflow-x: hidden;
+    }
+
+    main,
+    .site-footer {
+      max-width: 430px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-left: 1px solid rgba(255,255,255,.06);
+      border-right: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 0 80px rgba(0,0,0,.42);
+    }
+
+    a { color: inherit; }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: calc((100vw - min(100vw, 430px)) / 2);
+      width: min(100vw, 430px);
+      height: 66px;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: linear-gradient(to bottom, rgba(5,4,3,.94), rgba(5,4,3,.42), transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .crest {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      opacity: .96;
+      filter: drop-shadow(0 2px 12px rgba(0,0,0,.35));
+    }
+
+    .brand-ja {
+      font-family: "Noto Serif JP", serif;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: .12em;
+      font-weight: 300;
+    }
+
+    .brand-en {
+      margin-top: 3px;
+      font-size: 7px;
+      letter-spacing: .32em;
+      opacity: .9;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      height: 44px;
+      margin-left: auto;
+      position: relative;
+      z-index: 10002;
+    }
+
+    .menu-toggle {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,.92);
+      font-family: "Noto Serif JP", serif;
+      font-size: 29px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .menu-toggle::before {
+      content: "☰";
+    }
+
+    body.menu-open .menu-toggle::before {
+      content: "×";
+      font-size: 38px;
+      transform: translateY(-2px);
+    }
+
+    nav {
+      position: fixed;
+      top: 66px;
+      right: calc((100vw - min(100vw, 430px)) / 2);
+      width: min(78vw, 335px);
+      max-height: calc(100dvh - 66px);
+      padding: 32px 30px 38px;
+      background: rgba(5,4,3,.96);
+      backdrop-filter: blur(18px);
+      border-left: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      z-index: 9999;
+      overflow-y: auto;
+      transform: translateX(110%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform .38s ease, opacity .38s ease, visibility .38s ease;
+      font-family: "Noto Serif JP", serif;
+    }
+
+    nav.is-open {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    nav > a,
+    nav .nav-dropdown {
+      display: block;
+      color: rgba(255,255,255,.92);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: .14em;
+      font-weight: 300;
+    }
+
+    .nav-dropdown-trigger {
+      display: block;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,.92);
+      font-family: "Noto Serif JP", serif;
+      font-size: 15px;
+      letter-spacing: .14em;
+      font-weight: 300;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .nav-dropdown-menu {
+      position: static;
+      min-width: 0;
+      padding: 12px 0 0 18px;
+      border: none;
+      background: transparent;
+      backdrop-filter: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 9px 0;
+      font-size: 13px;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.68);
+      text-decoration: none;
+    }
+
+    .instagram {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      border: 2px solid #fff;
+      border-radius: 7px;
+      position: relative;
+      transform: none;
+      vertical-align: middle;
+    }
+
+    .instagram::before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      left: 6px;
+      top: 6px;
+    }
+
+    .instagram::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      right: 4px;
+      top: 4px;
+    }
+
+    .page-inner {
+      width: min(100% - 40px, 680px);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-en {
+      display: block;
+      margin-bottom: 18px;
+      font-size: 12px;
+      letter-spacing: .34em;
+      opacity: .58;
+    }
+
+    h1, h2, h3 {
+      font-family: "Noto Serif JP", serif;
+      font-weight: 300;
+    }
+
+    .menu-hero {
+      position: relative;
+      min-height: 560px;
+      padding: 96px 0 78px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: #120c09;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .menu-hero .page-inner {
+      z-index: 3;
+    }
+
+    .menu-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(5,4,3,.72) 0%,
+          rgba(5,4,3,.28) 38%,
+          rgba(5,4,3,.82) 100%),
+        url('https://res.cloudinary.com/dvr7rww8q/image/upload/v1779258651/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8817%E6%97%A5_11_39_54_1_txjqod.jpg') 72% center / cover no-repeat;
+      filter: saturate(1) brightness(1) contrast(1);
+    }
+
+    .menu-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.06), transparent 42%),
+        linear-gradient(90deg,
+          rgba(5,4,3,.82) 0%,
+          rgba(5,4,3,.38) 42%,
+          rgba(5,4,3,.16) 100%);
+      pointer-events: none;
+    }
+
+    .breadcrumb {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 34px;
+      font-family: "Noto Serif JP", serif;
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.52);
+      text-decoration: none;
+    }
+
+    .breadcrumb span:last-child { color: rgba(255,255,255,.78); }
+
+    .menu-hero h1 {
+      font-size: clamp(24px, 6.4vw, 34px);
+      letter-spacing: .12em;
+      line-height: 1.3;
+      text-shadow: 0 4px 32px rgba(0,0,0,.48);
+    }
+
+    .hero-lead {
+      margin-top: 30px;
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      line-height: 2.25;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.76);
+    }
+
+    
+
+    .menu-section {
+      position: relative;
+      padding: 96px 0;
+      overflow: hidden;
+      isolation: isolate;
+      background: #050403;
+    }
+
+    .menu-section::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: 0;
+      bottom: -80px;
+      width: 74%;
+      z-index: 0;
+      background: url('https://res.cloudinary.com/dvr7rww8q/image/upload/v1779070234/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8817%E6%97%A5_11_39_54_f3ikar.jpg') 62% center / auto 84% no-repeat;
+      opacity: .88;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.02) 10%,
+        rgba(0,0,0,.14) 24%,
+        rgba(0,0,0,.34) 40%,
+        rgba(0,0,0,.58) 56%,
+        rgba(0,0,0,.72) 72%,
+        rgba(0,0,0,1) 100%);
+      mask-image: linear-gradient(90deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 14%,
+        rgba(0,0,0,.08) 28%,
+        rgba(0,0,0,.22) 42%,
+        rgba(0,0,0,.46) 56%,
+        rgba(0,0,0,.72) 72%,
+        rgba(0,0,0,1) 100%);
+    }
+
+    .menu-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg,
+          rgba(5,4,3,1) 0%,
+          rgba(5,4,3,.62) 16%,
+          rgba(5,4,3,.20) 48%,
+          rgba(5,4,3,.88) 100%),
+        linear-gradient(90deg,
+          rgba(5,4,3,1) 0%,
+          rgba(5,4,3,.88) 18%,
+          rgba(5,4,3,.52) 38%,
+          rgba(5,4,3,.12) 62%,
+          rgba(5,4,3,0) 100%);
+      pointer-events: none;
+    }
+
+    .section-head {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(19px, 5.2vw, 26px);
+      line-height: 1.45;
+      letter-spacing: .06em;
+      white-space: nowrap;
+    }
+
+    .section-lead {
+      margin: 26px auto 0;
+      max-width: 28.5em;
+      font-family: "Noto Serif JP", serif;
+      font-size: 13.5px;
+      line-height: 2.08;
+      letter-spacing: .045em;
+      color: rgba(255,255,255,.66);
+    }
+
+    .menu-grid {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+
+    .menu-main-cta {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-main-cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(88%, 320px);
+      min-height: 68px;
+      padding: 0 28px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 2px;
+      background: rgba(255,255,255,.045);
+      color: rgba(255,255,255,.92);
+      text-decoration: none;
+      font-family: "Noto Serif JP", serif;
+      font-size: 13px;
+      letter-spacing: .24em;
+      backdrop-filter: blur(3px);
+      box-shadow: 0 12px 34px rgba(0,0,0,.22);
+      transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s ease;
+    }
+
+    .menu-main-cta a:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.24);
+      transform: translateY(-2px);
+    }
+
+    .menu-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+      padding: 42px 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(5,4,3,.18);
+      backdrop-filter: none;
+      color: inherit;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .menu-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.07), transparent 34%);
+      pointer-events: none;
+    }
+
+    .menu-number {
+      font-size: 13px;
+      opacity: .45;
+      letter-spacing: .24em;
+    }
+
+    .menu-card h3 {
+      margin-top: 26px;
+      margin-bottom: 22px;
+      font-size: clamp(24px, 7vw, 30px);
+      line-height: 1.45;
+      letter-spacing: .14em;
+    }
+
+    .menu-price {
+      margin-bottom: 24px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 42px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.92);
+    }
+
+    .menu-card p {
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      line-height: 2.2;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.74);
+    }
+
+    .special-menu {
+      border-color: rgba(255,255,255,.12);
+      background: rgba(5,4,3,.18);
+    }
+
+    .menu-note {
+      margin-top: 22px;
+      font-size: 12px !important;
+      color: rgba(255,255,255,.56) !important;
+    }
+
+    .menu-reserve-link {
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    .detail-reserve-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      padding: 16px 28px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.92);
+      text-decoration: none;
+      font-family: "Noto Serif JP", serif;
+      font-size: 12px;
+      letter-spacing: .18em;
+      transition: background .35s ease, border-color .35s ease, transform .35s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .detail-reserve-link:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.28);
+      transform: translateY(-2px);
+    }
+
+    .detail-section {
+      padding: 96px 0;
+      background: #070504;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .detail-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .detail-photo {
+      will-change: opacity, filter, transform;
+      position: relative;
+      z-index: 0;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-top: -92px;
+      min-height: 470px;
+      border: none;
+      background: #070504;
+      overflow: hidden;
+      order: 2;
+      opacity: 0;
+      filter: blur(26px) brightness(.58);
+      transform: scale(1.12);
+      transition:
+        opacity 2.4s cubic-bezier(.22,.61,.36,1),
+        filter 2.8s cubic-bezier(.22,.61,.36,1),
+        transform 3.2s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .detail-photo.is-visible {
+      opacity: 1;
+      filter: blur(0) brightness(1);
+      transform: scale(1);
+    }
+
+    .detail-photo::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 355px;
+      z-index: 1;
+      background: url('https://res.cloudinary.com/dvr7rww8q/image/upload/v1779271828/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8820%E6%97%A5_19_10_14_em0psz.png') 58% top / 112% auto no-repeat;
+      filter: saturate(.78) brightness(.88) contrast(1.03);
+      -webkit-mask-image: linear-gradient(180deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.24) 10%,
+        rgba(0,0,0,.78) 22%,
+        rgba(0,0,0,1) 34%,
+        rgba(0,0,0,1) 56%,
+        rgba(0,0,0,.52) 74%,
+        rgba(0,0,0,.16) 86%,
+        rgba(0,0,0,.02) 94%,
+        rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(180deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.24) 10%,
+        rgba(0,0,0,.78) 22%,
+        rgba(0,0,0,1) 34%,
+        rgba(0,0,0,1) 56%,
+        rgba(0,0,0,.52) 74%,
+        rgba(0,0,0,.16) 86%,
+        rgba(0,0,0,.02) 94%,
+        rgba(0,0,0,0) 100%);
+    }
+
+    .detail-photo::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 255px;
+      height: 150px;
+      z-index: 2;
+      background: linear-gradient(180deg,
+        rgba(7,5,4,0) 0%,
+        rgba(7,5,4,.18) 36%,
+        rgba(7,5,4,.58) 72%,
+        rgba(7,5,4,1) 100%);
+      pointer-events: none;
+    }
+
+    .detail-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .detail-content h2 {
+      font-size: clamp(20px, 5.2vw, 28px);
+      line-height: 1.48;
+      letter-spacing: .04em;
+      margin-bottom: 30px;
+      max-width: 13.5em;
+    }
+
+    .detail-content p {
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      line-height: 2.35;
+      letter-spacing: .09em;
+      color: rgba(255,255,255,.74);
+      margin-bottom: 24px;
+    }
+
+    .flow-list {
+      border-top: 1px solid rgba(255,255,255,.16);
+    }
+
+    .flow-item {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 38px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .flow-item span {
+      font-size: 16px;
+      opacity: .58;
+      letter-spacing: .28em;
+    }
+
+    .flow-item div {
+      text-align: left;
+    }
+
+    .flow-item p {
+      font-size: 24px;
+      letter-spacing: .14em;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .flow-item small {
+      display: block;
+      font-family: "Noto Serif JP", serif;
+      font-size: 13px;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.62);
+      line-height: 2.05;
+    }
+
+    .info-strip {
+      padding: 64px 0;
+      background: #050403;
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .info-item {
+      background: #050403;
+      padding: 30px 24px;
+      text-align: center;
+    }
+
+    .info-item span {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      letter-spacing: .28em;
+      color: rgba(255,255,255,.48);
+    }
+
+    .info-item p {
+      font-family: "Noto Serif JP", serif;
+      font-size: 15px;
+      line-height: 2;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.78);
+    }
+
+    .cta-section {
+      position: relative;
+      padding: 96px 0;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.78)),
+        url('https://res.cloudinary.com/dvr7rww8q/image/upload/f_auto,q_auto/hero_fwznuo') center / cover no-repeat;
+    }
+
+    .cta-box {
+      width: min(100% - 40px, 680px);
+      margin: 0 auto;
+      padding: 56px 28px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(7,5,4,.68);
+      backdrop-filter: blur(14px);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(24px, 6.8vw, 34px);
+      letter-spacing: .08em;
+      margin-bottom: 26px;
+    }
+
+    .cta-box p {
+      margin-bottom: 38px;
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      line-height: 2.25;
+      letter-spacing: .09em;
+      color: rgba(255,255,255,.72);
+    }
+
+    .site-footer {
+      background: #040302;
+      padding: 76px 0 90px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-inner {
+      width: min(100% - 40px, 680px);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 34px;
+    }
+
+    .footer-brand h2 {
+      font-size: 30px;
+      font-weight: 300;
+      letter-spacing: .22em;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p,
+    .footer-info p,
+    .footer-links a {
+      font-family: "Noto Serif JP", serif;
+      font-size: 13px;
+      line-height: 2.3;
+      letter-spacing: .16em;
+      color: rgba(255,255,255,.68);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(34px);
+      filter: blur(8px);
+      animation: fadeUp 1.35s ease forwards;
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(46px);
+      filter: blur(10px);
+      transition:
+        opacity 1.4s ease,
+        transform 1.4s ease,
+        filter 1.4s ease;
+    }
+
+    .fade-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .delay-1 { animation-delay: .18s; }
+    .delay-2 { animation-delay: .34s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="https://acumoxzen-tech.github.io/kanjitsudo-site/" class="brand" aria-label="還日堂トップへ">
+      <img class="crest" src="https://res.cloudinary.com/dvr7rww8q/image/upload/v1779030104/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8818%E6%97%A5_00_00_07_xy3xk1.png" alt="還日堂ロゴ">
+      <div>
+        <div class="brand-ja">還日堂</div>
+        <div class="brand-en">KANJITSUDŌ</div>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <a class="insta-link" href="https://www.instagram.com/k__.z.__m/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><span class="instagram"></span></a>
+      <button class="menu-toggle" type="button" aria-label="メニューを開く"></button>
+    </div>
+  </header>
+
+  <nav aria-label="主要ナビゲーション">
+    <a href="https://acumoxzen-tech.github.io/kanjitsudo-site/">ホーム</a>
+    <a href="about.html">当店について</a>
+    <a href="menu.html" class="active">施術メニュー</a>
+    <a href="staff.html">スタッフ紹介</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-dropdown-trigger">ご案内 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="gallery.html">店内紹介</a>
+        <a href="#flow-section">ご利用の流れ</a>
+        <a href="faq.html">よくあるご質問</a>
+        <a href="news.html">お知らせ</a>
+        <a href="access.html">アクセス</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+    <a href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html">ご予約</a>
+  </nav>
+
+  <main>
+    <section class="menu-hero">
+      <div class="page-inner">
+        <a class="breadcrumb fade-up" href="https://acumoxzen-tech.github.io/kanjitsudo-site/"><span>HOME</span><span>›</span><span>MENU</span></a>
+        <span class="section-en fade-up delay-1">TREATMENT MENU</span>
+        <h1 class="fade-up delay-1">施術メニュー</h1>
+        <p class="hero-lead fade-up delay-2">
+          環日堂では、お一人おひとりのお身体の状態に合わせたオーダーメイドの治療をご案内しております。
+        </p>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu-list">
+      <div class="page-inner">
+        <div class="section-head fade-section">
+          <span class="section-en">MENU</span>
+          <h2>健美を整える、二つの治療</h2>
+          <p class="section-lead">
+            還日堂では、“健やかさ”と“美しさ”を整える二つの治療を軸に、お身体全体の巡りを診ながらご案内しております。
+          </p>
+        </div>
+
+        <div class="menu-grid fade-section">
+          <article class="menu-card">
+            <span class="menu-number">01</span>
+            <h3>全身調律鍼灸</h3>
+            <div class="menu-price">¥8,800</div>
+            <p>
+              脈診・舌診・腹診を通して、お身体全体の状態を丁寧に診ながら治療を行います。
+              全身の氣の巡りを整え、不調の改善はもちろん、体質改善や未病予防にも。
+            </p>
+            <div class="menu-reserve-link">
+              <a href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html" class="detail-reserve-link">この施術を予約する</a>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <span class="menu-number">02</span>
+            <h3>美容養生鍼灸</h3>
+            <div class="menu-price">¥13,200</div>
+            <p>
+              お顔だけではなく、身体全体の巡りを整えながら内側から美しさを育てていく美容鍼灸です。
+              肌本来がもつ“自ら美しくなろうとするチカラ”を引き出し、内側から澄んだ美しさへ導きます。
+            </p>
+            <div class="menu-reserve-link">
+              <a href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html" class="detail-reserve-link">この施術を予約する</a>
+            </div>
+          </article>
+
+          <article class="menu-card special-menu">
+            <span class="menu-number">SPECIAL</span>
+            <h3>応急治療</h3>
+            <div class="menu-price">¥3,300</div>
+            <p>
+              寝違え・ぎっくり腰など、急な不調に対する短時間の応急治療です。
+              状態を確認しながら、負担の少ない鍼灸で痛みや動きづらさへ対応します。
+            </p>
+            <p class="menu-note">※定期的に通われている方限定<br>※ネット予約不可。直接お問い合わせください。</p>
+          </article>
+        </div>
+
+        <div class="menu-main-cta fade-section">
+          <a href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html">治療を予約する</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="page-inner detail-layout">
+        <div class="detail-photo" aria-hidden="true"></div>
+        <div class="detail-content fade-section">
+          <span class="section-en">PHILOSOPHY</span>
+          <h2>症状だけではなく、<br>身体全体の巡りを診る。</h2>
+          <p>
+            環日堂では、痛みや不調が出ている場所だけを診るのではなく、脈診・舌診・腹診など東洋医学古来の診察法を通して、言葉にならない身体の声に耳を傾けます。
+          </p>
+          <p>
+            不調の原因は、必ずしも症状が出ている場所にあるとは限りません。
+            東洋医学では、自覚していない体質や心身のバランスの乱れが、不調の原因となっていることも少なくありません。
+            そのため身体全体の巡りやバランスを整えることで、身体が本来もつ自然治癒力を引き出し、さまざまな不調に対しても回復しやすい状態へと導いていきます。
+          </p>
+          <p>
+            鍼は体への負担を抑え、刺激量もお一人おひとりの状態に合わせて調整いたします。初めての方や、鍼に不安がある方も安心してご相談ください。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section" id="flow-section">
+      <div class="page-inner">
+        <div class="section-head">
+          <span class="section-en">FLOW</span>
+          <h2>ご利用の流れ</h2>
+          <p class="section-lead">
+            初めての方でも安心して施術を受けていただけるよう、還日堂では一つひとつ丁寧にご案内しております。
+          </p>
+        </div>
+
+        <div class="flow-list">
+          <div class="flow-item">
+            <span>01</span>
+            <div>
+              <p>ご予約</p>
+              <small>
+                ご予約フォームより、ご希望の日時・施術内容をご選択ください。<br>
+                完全予約制のため、落ち着いた空間でゆっくりとお過ごしいただけます。
+              </small>
+            </div>
+          </div>
+
+          <div class="flow-item">
+            <span>02</span>
+            <div>
+              <p>ご来院</p>
+              <small>
+                お着替えをご用意しておりますので、お仕事帰りでもそのままお越しいただけます。<br>
+                治療前にはカルテなどをご記入いただきながら、どうぞリラックスしてお過ごしください。
+              </small>
+            </div>
+          </div>
+
+          <div class="flow-item">
+            <span>03</span>
+            <div>
+              <p>カウンセリング・施術</p>
+              <small>
+                お身体のお悩みや生活習慣について丁寧にお伺いし、脈診・舌診・腹診を通して現在のお身体の状態を見立てます。<br>
+                お一人おひとりに合わせたやさしい鍼で、氣の巡りを整えながら治療を行います。
+              </small>
+            </div>
+          </div>
+
+          <div class="flow-item">
+            <span>04</span>
+            <div>
+              <p>治療後</p>
+              <small>
+                治療後はお身体の変化を感じながら、ゆっくりとお支度ください。<br>
+                当日は飲酒や長湯を避け、ご帰宅後は無理をせずゆっくりお休みいただくことをおすすめしております。
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-strip">
+      <div class="page-inner">
+        <div class="info-grid">
+          <div class="info-item">
+            <span>STYLE</span>
+            <p>完全予約制</p>
+          </div>
+          <div class="info-item">
+            <span>OPEN</span>
+            <p>10:00 - 20:00</p>
+          </div>
+          <div class="info-item">
+            <span>CLOSED</span>
+            <p>日曜・月曜</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-box">
+        <span class="section-en">RESERVE</span>
+        <h2>ご予約はこちら</h2>
+        <p>
+          施術内容に迷われる場合も、当日の状態を確認しながらご提案いたします。<br>
+          まずはご希望の日時をお選びください。
+        </p>
+        <a class="reserve-btn" href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html">予約ページへ進む</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h2>KANJITSUDŌ</h2>
+        <p>還日堂</p>
+      </div>
+      <div class="footer-info">
+        <p>〒270-0101<br>千葉県流山市東深井９９１</p>
+        <p>10:00 - 20:00<br>Closed Sun / Mon</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/k__.z.__m/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://acumoxzen-tech.github.io/kanjitsudo-reserve/reserve.html">Reserve</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const fadeSections = document.querySelectorAll('.fade-section');
+    const detailPhoto = document.querySelector('.detail-photo');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.18,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    fadeSections.forEach(section => fadeObserver.observe(section));
+
+    if (detailPhoto) {
+      const photoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            detailPhoto.classList.add('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -12% 0px'
+      });
+
+      photoObserver.observe(detailPhoto);
+    }
+
+    const mobileNav = document.querySelector('nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    function openMenu() {
+      mobileNav.classList.add('is-open');
+      document.body.classList.add('menu-open');
+      menuToggle.setAttribute('aria-label', 'メニューを閉じる');
+    }
+
+    function closeMenu() {
+      mobileNav.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-label', 'メニューを開く');
+    }
+
+    if (mobileNav && menuToggle) {
+      menuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        mobileNav.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileNav.classList.contains('is-open')) return;
+        if (mobileNav.contains(e.target) || menuToggle.contains(e.target)) return;
+        closeMenu();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    }
+  </script>
+</body>
+</html>
