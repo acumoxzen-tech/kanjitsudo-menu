@@ -279,9 +279,9 @@
       z-index: 0;
       background:
         linear-gradient(180deg,
-          rgba(5,4,3,.72) 0%,
-          rgba(5,4,3,.28) 38%,
-          rgba(5,4,3,.82) 100%),
+          rgba(5,4,3,.48) 0%,
+          rgba(5,4,3,.14) 38%,
+          rgba(5,4,3,.68) 100%),
         url('https://res.cloudinary.com/dvr7rww8q/image/upload/v1779258651/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8817%E6%97%A5_11_39_54_1_txjqod.jpg') 72% center / cover no-repeat;
       filter: saturate(1) brightness(1) contrast(1);
     }
@@ -292,11 +292,11 @@
       inset: 0;
       z-index: 1;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.06), transparent 42%),
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 42%),
         linear-gradient(90deg,
-          rgba(5,4,3,.82) 0%,
-          rgba(5,4,3,.38) 42%,
-          rgba(5,4,3,.16) 100%);
+          rgba(5,4,3,.58) 0%,
+          rgba(5,4,3,.18) 42%,
+          rgba(5,4,3,.04) 100%);
       pointer-events: none;
     }
 
@@ -582,9 +582,14 @@
       border-top: 1px solid rgba(255,255,255,.06);
     }
 
+    #menu-top,
+    #flow-section {
+      scroll-margin-top: 76px;
+    }
+
     #flow-section {
       padding-top: 0;
-      margin-top: -26px;
+      margin-top: -12px;
     }
 
     .detail-layout {
@@ -602,7 +607,7 @@
       width: calc(100% + 40px);
       margin-left: -20px;
       margin-top: -36px;
-      margin-bottom: -48px;
+      margin-bottom: -28px;
       min-height: 420px;
       border: none;
       background: #070504;
@@ -800,6 +805,48 @@
       line-height: 2.25;
       letter-spacing: .09em;
       color: rgba(255,255,255,.72);
+    }
+
+    .reserve-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 320px);
+      min-height: 62px;
+      padding: 0 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,177,112,.34);
+      background:
+        linear-gradient(135deg,
+          rgba(214,177,112,.20),
+          rgba(255,255,255,.06));
+      color: rgba(255,255,255,.96);
+      text-decoration: none;
+      font-family: "Noto Serif JP", serif;
+      font-size: 13px;
+      letter-spacing: .18em;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow:
+        0 18px 42px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.12);
+      transition:
+        transform .35s ease,
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .reserve-btn:hover {
+      transform: translateY(-3px);
+      background:
+        linear-gradient(135deg,
+          rgba(214,177,112,.30),
+          rgba(255,255,255,.10));
+      border-color: rgba(214,177,112,.54);
+      box-shadow:
+        0 24px 56px rgba(0,0,0,.44),
+        inset 0 1px 0 rgba(255,255,255,.16);
     }
 
     .site-footer {
@@ -1055,24 +1102,24 @@
       }
 
       .instagram {
-        width: 30px !important;
-        height: 30px !important;
-        border-radius: 8px !important;
+        width: 26px !important;
+        height: 26px !important;
+        border-radius: 7px !important;
         transform: translateY(-2px) !important;
       }
 
       .instagram::before {
-        width: 10px !important;
-        height: 10px !important;
-        left: 7px !important;
-        top: 7px !important;
+        width: 8px !important;
+        height: 8px !important;
+        left: 6px !important;
+        top: 6px !important;
       }
 
       .instagram::after {
-        width: 4px !important;
-        height: 4px !important;
-        right: 5px !important;
-        top: 5px !important;
+        width: 3px !important;
+        height: 3px !important;
+        right: 4px !important;
+        top: 4px !important;
       }
 
       .menu-hero::before {
@@ -1081,8 +1128,8 @@
 
       .menu-hero::after {
         background:
-          radial-gradient(circle at top, rgba(255,255,255,.04), transparent 42%),
-          linear-gradient(180deg, rgba(5,4,3,.42) 0%, rgba(5,4,3,.16) 44%, rgba(5,4,3,.64) 100%) !important;
+          radial-gradient(circle at top, rgba(255,255,255,.06), transparent 42%),
+          linear-gradient(180deg, rgba(5,4,3,.22) 0%, rgba(5,4,3,.08) 44%, rgba(5,4,3,.46) 100%) !important;
       }
 
       .menu-section {
@@ -1243,7 +1290,7 @@
     <nav aria-label="主要ナビゲーション">
       <a href="https://acumoxzen-tech.github.io/kanjitsudo-site/">ホーム</a>
       <a href="https://acumoxzen-tech.github.io/kanjitsudo-site/#about-page">当店について</a>
-      <a href="menu.html" class="active">施術メニュー</a>
+      <a href="#menu-top" class="active">施術メニュー</a>
       <a href="https://acumoxzen-tech.github.io/kanjitsudo-site/#staff-page">スタッフ紹介</a>
       <div class="nav-dropdown">
         <button type="button" class="nav-dropdown-trigger">ご案内 ▾</button>
@@ -1262,7 +1309,7 @@
   </header>
 
   <main>
-    <section class="menu-hero">
+    <section class="menu-hero" id="menu-top">
       <div class="page-inner">
         <div class="breadcrumb fade-up"><a href="https://acumoxzen-tech.github.io/kanjitsudo-site/">HOME</a><span>›</span><span>MENU</span></div>
         <span class="section-en fade-up delay-1">TREATMENT MENU</span>
@@ -1275,7 +1322,7 @@
 
     <section class="menu-section" id="menu-list">
       <div class="page-inner">
-        <div class="section-head fade-section">
+        <div class="section-head">
           <span class="section-en">MENU</span>
           <h2>健美を整える、二つの治療</h2>
           <p class="section-lead">
