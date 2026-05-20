@@ -1016,7 +1016,7 @@
         align-items: flex-start !important;
         justify-content: flex-start !important;
         padding: 110px 32px 40px !important;
-        gap: 18px !important;
+        gap: 26px !important;
         z-index: 9999 !important;
       }
 
@@ -1042,24 +1042,45 @@
       }
 
       nav.is-open > a {
-        width: 100% !important;
-        min-height: 52px !important;
-        display: flex !important;
-        align-items: center !important;
-        padding: 0 18px !important;
-        border: 1px solid rgba(255,255,255,.12) !important;
-        background: rgba(255,255,255,.03) !important;
         color: rgba(255,255,255,.92) !important;
         text-decoration: none !important;
+        position: relative !important;
+        padding: 0 0 10px !important;
         line-height: 1 !important;
         font-weight: 300 !important;
+        border: none !important;
+        background: transparent !important;
+        min-height: 0 !important;
+        width: auto !important;
+        display: block !important;
       }
 
       nav.is-open > a.active {
-        border: 1px solid rgba(214,177,112,.42) !important;
-        background: rgba(214,177,112,.08) !important;
         color: rgba(255,255,255,.98) !important;
-        box-shadow: inset 0 0 0 1px rgba(214,177,112,.12) !important;
+      }
+
+      nav.is-open > a.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: rgba(214,177,112,.72);
+      }
+
+      nav.is-open > a.nav-reserve-menu {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 168px !important;
+        height: 44px !important;
+        padding: 0 22px !important;
+        border: 1px solid rgba(255,255,255,.22) !important;
+        background: rgba(255,255,255,.035) !important;
+        color: rgba(255,255,255,.92) !important;
+        font-size: 13px !important;
+        letter-spacing: .14em !important;
       }
 
       nav.is-open > a[aria-label="Instagram"] {
@@ -1067,13 +1088,9 @@
       }
 
       nav.is-open .nav-dropdown-trigger {
-        width: 100% !important;
-        min-height: 52px !important;
-        display: flex !important;
-        align-items: center !important;
-        padding: 0 18px !important;
-        border: 1px solid rgba(255,255,255,.12) !important;
-        background: rgba(255,255,255,.03) !important;
+        display: block !important;
+        border: none !important;
+        background: transparent !important;
         color: rgba(255,255,255,.92) !important;
         font-family: "Noto Serif JP", serif !important;
         font-size: 15px !important;
