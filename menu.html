@@ -279,11 +279,11 @@
       z-index: 0;
       background:
         linear-gradient(180deg,
-          rgba(5,4,3,.34) 0%,
-          rgba(5,4,3,.12) 38%,
-          rgba(5,4,3,.56) 100%),
+          rgba(5,4,3,.28) 0%,
+          rgba(5,4,3,.08) 38%,
+          rgba(5,4,3,.46) 100%),
         url('https://res.cloudinary.com/dvr7rww8q/image/upload/v1779258651/ChatGPT_Image_2026%E5%B9%B45%E6%9C%8817%E6%97%A5_11_39_54_1_txjqod.jpg') 72% center / cover no-repeat;
-      filter: saturate(.94) brightness(.92) contrast(1.02);
+      filter: saturate(.98) brightness(1.01) contrast(1.02);
     }
 
     .menu-hero::after {
@@ -294,8 +294,8 @@
       background:
         radial-gradient(circle at top, rgba(255,255,255,.04), transparent 42%),
         linear-gradient(90deg,
-          rgba(5,4,3,.52) 0%,
-          rgba(5,4,3,.22) 42%,
+          rgba(5,4,3,.42) 0%,
+          rgba(5,4,3,.16) 42%,
           rgba(5,4,3,0) 100%);
       pointer-events: none;
     }
@@ -1011,8 +1011,8 @@
         color: rgba(255,255,255,.92);
         cursor: pointer;
         position: relative;
-        top: -12.5px;
-        transform: none;
+        top: 0;
+        transform: translateY(-1px);
         transition: opacity .3s ease;
         pointer-events: none;
       }
@@ -1107,14 +1107,10 @@
         letter-spacing: .14em !important;
       }
 
-      nav.is-open > a[aria-label="Instagram"] {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin-top: auto !important;
-        padding-top: 18px !important;
-        transform: translateY(-10px) !important;
-        opacity: .92 !important;
+      nav.is-open > a[aria-label="Instagram"] {$1transform: none !important;$2}
+
+      nav.is-open > a[aria-label="Instagram"] .instagram {
+        transform: none !important;
       }
 
       nav.is-open .nav-dropdown-trigger {
@@ -1165,7 +1161,7 @@
         height: 24px !important;
         border-width: 1.6px !important;
         border-radius: 7px !important;
-        transform: translateY(0) !important;
+        transform: translateY(-1px) !important;
       }
 
       .instagram::before {
@@ -1184,13 +1180,13 @@
       }
 
       .menu-hero::before {
-        filter: saturate(.94) brightness(.88) contrast(1.02) !important;
+        filter: saturate(.98) brightness(.98) contrast(1.02) !important;
       }
 
       .menu-hero::after {
         background:
           radial-gradient(circle at top, rgba(255,255,255,.03), transparent 42%),
-          linear-gradient(180deg, rgba(5,4,3,.18) 0%, rgba(5,4,3,.08) 44%, rgba(5,4,3,.42) 100%) !important;
+          linear-gradient(180deg, rgba(5,4,3,.12) 0%, rgba(5,4,3,.05) 44%, rgba(5,4,3,.34) 100%) !important;
       }
 
       .menu-section {
